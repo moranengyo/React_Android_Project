@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="Theme.Fab_Bottom_app_bar" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorPrimary">@color/basicColor</item>
+        <item name="colorPrimaryDark">@color/basicColor</item>
+        <item name="materialButtonStyle">@style/TransparentButtonStyle</item>
+        <item name="actionBarTheme">@style/ThemeOverlay.Actionbar</item>
+        <item name="fontFamily">@font/ibm_plex_sans_kr_medium</item>
+        <item name="android:fontFamily">@font/ibm_plex_sans_kr_medium</item>
+    </style>
+
+
+
+    <style name="ThemeOverlay.Actionbar" parent="ThemeOverlay.MaterialComponents.ActionBar.Surface" >
+        <item name="colorPrimary">@color/white</item>
+        <item name="android:textColorPrimary">@color/black</item>
+        <item name="android:fontFamily">@font/ibm_plex_sans_kr_medium</item> <!-- 원하는 폰트 적용 -->
+    </style>
+
+
+    <style name="RoundButton.Red" parent="ThemeOverlay.AppCompat">
+        <item name="android:background">@drawable/round_button</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:backgroundTint">@color/colorAccent</item>
+    </style>
+
+    <style name="CustomEditText" parent="Widget.AppCompat.EditText">
+        <item name="colorControlNormal">@color/text_gray</item>
+        <item name="colorControlActivated">@color/gray</item>
+    </style>
+
+    <style name="RoundButton.Basic" parent="ThemeOverlay.AppCompat">
+        <item name="colorAccent">@color/basicColor</item>
+    </style>
+
+    <style name="TransparentButtonStyle" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="backgroundTint">@android:color/transparent</item>
+        <item name="strokeColor">@color/basicColor</item>
+    </style>
+
+    <!-- Popup Menu Theme for overflow items -->
+    <style name="PopupMenuTheme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:textColorPrimary">@android:color/black</item>
+        <item name="android:colorControlHighlight">@color/colorAccent
+        </item> <!-- Apply accent color to highlight -->
+    </style>
+
+    <!-- Splash screen theme -->
+    <style name="Theme.SplashScreen" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@color/white</item>
+    </style>
+
+</resources>

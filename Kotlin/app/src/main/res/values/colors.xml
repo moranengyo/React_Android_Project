@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Existing Colors -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Additional Colors -->
+    <color name="blue">#3894E2</color> <!--  미확인, 입고  -->
+    <color name="pink">#DD4D3C</color> <!--  반려, 사용, 출고  -->
+    <color name="yellow">#EFD756</color> <!--  요청  -->
+    <color name="deepblue">#0105D5</color>
+    <color name="green">#03C65A</color> <!--  승인  -->
+    <color name="gray">#9E9E9E</color>
+    <color name="text_gray">@android:color/darker_gray</color>
+    <color name="background_gray">#EFEFEF</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="wholeBackground">#F8F8F8</color>
+    <color name="bannerPrimary">#1871BF</color>
+    <color name="basicColor">#0F4C81</color> <!--  전체 기본 컬러  -->
+</resources>

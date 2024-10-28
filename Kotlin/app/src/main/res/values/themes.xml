@@ -1,0 +1,16 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <!--    <style name="Base.Theme.Kotilntpjyesim" parent="Theme.AppCompat.DayNight.DarkActionBar">-->
+    <!--        &lt;!&ndash; Customize your light theme here. &ndash;&gt;-->
+    <!--        <item name="colorPrimary">@color/basicColor</item>-->
+    <!--    </style>-->
+    <!--    -->
+    <!--    <style name="Theme.Kotilntpjyesim" parent="Base.Theme.Kotilntpjyesim" />-->
+
+    <style name="Base.Theme.Kotilntpjyesim" parent="@style/Theme.Fab_Bottom_app_bar">
+
+    </style>
+
+    <style name="Theme.Kotilntpjyesim" parent="Base.Theme.Kotilntpjyesim" />
+
+</resources>

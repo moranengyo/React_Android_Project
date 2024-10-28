@@ -1,0 +1,49 @@
+server :
+  port : 8080
+
+spring :
+  application :
+    name : yesim_spring
+
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+
+  datasource:
+    hikari:
+#      jdbc-url: jdbc:mysql://localhost:3306/testdb1?characterEncoding=UTF-8&serverTimeZone=UTC
+#      username: test1
+#      password: full405
+      jdbc-url: jdbc:mysql://58.239.58.243:3306/java405_team1_final?characterEncoding=UTF-8&serverTimeZone=UTC
+      username: java405_team1_final
+      password: java405_team1_final_1234
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      connection-test-query: SELECT 1
+
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    defer-datasource-initialization: true
+
+  sql:
+    init:
+      mode : always
+
+  web:
+    resources:
+      static-locations: file:///C:/fullstack405/YESIM/spring/yesim_spring/image/
+
+image-base-url: http://10.100.105.203:8080/
+
+jwt:
+  issuer : "java405_team1_final_issuer"
+  secretKey : "java405_team1_final_secretKey"

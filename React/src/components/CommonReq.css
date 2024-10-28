@@ -1,0 +1,46 @@
+.req-content {
+    background-color: rgba(255,255,255,0.73);
+    width: 1000px;
+}
+
+.img-preview {
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 400px;
+    transition: all 0.1s ease;
+}
+
+@media (max-width: 1400px) {
+    .req-content {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    .req-content input {
+        width: 90%;
+    }
+
+    .req-content .img-preview {
+        width: 90%;
+        min-height: 200px;
+        transition: all 0.1s ease;
+    }
+
+    .req-content div {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .req-content section {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .req-content .row {
+        flex-direction: column;
+    }
+
+}

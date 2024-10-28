@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="6dp"
+        android:id="@+id/topCardView"
+        tools:layout_height="150dp"
+        android:backgroundTint="#1669B1">
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp"
+            android:id="@+id/container">
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+
+            <TextView
+                    android:text="사용현황"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textViewTitle"
+                    android:textSize="20sp"
+                    android:textColor="@color/white"
+                    android:textStyle="normal"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/ibm_plex_sans_kr_medium"
+                    android:includeFontPadding="false" />
+
+            <TextView
+                    android:text="오늘"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textViewDate"
+                    android:textSize="24sp"
+                    android:textColor="@color/white"
+                    android:textStyle="normal"
+                    android:layout_weight="1"
+                    android:textAlignment="textEnd"
+                    android:fontFamily="@font/ibm_plex_sans_kr_medium"
+                    android:includeFontPadding="false" />
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:id="@+id/LinearLayoutFirst"
+                    android:clickable="true">
+
+                <TextView
+                        android:text="83"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textViewFirstCount"
+                        android:textColor="@color/white"
+                        android:textSize="34sp"
+                        android:textStyle="normal"
+                        android:fontFamily="@font/ibm_plex_sans_kr_medium"
+                        android:includeFontPadding="false" />
+
+                <TextView
+                        android:text="총입고량"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textViewFirstTitle"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/ibm_plex_sans_kr_medium"
+                        android:includeFontPadding="false" />
+            </LinearLayout>
+
+            <View
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/viewDivider"
+                    android:background="@color/text_gray"
+                    android:layout_marginEnd="16dp" />
+
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_gravity="left"
+                    android:id="@+id/LinearLayoutSecond"
+                    android:focusable="auto"
+                    android:clickable="true">
+
+                <TextView
+                        android:text="132"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textViewSecondCount"
+                        android:textColor="@color/white"
+                        android:textSize="34sp"
+                        android:textStyle="normal"
+                        android:fontFamily="@font/ibm_plex_sans_kr_medium"
+                        android:includeFontPadding="false" />
+
+                <TextView
+                        android:text="총사용량"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textViewSecondTitle"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/ibm_plex_sans_kr_medium"
+                        android:includeFontPadding="false" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

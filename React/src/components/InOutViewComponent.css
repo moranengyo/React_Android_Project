@@ -1,0 +1,37 @@
+.status-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    width: 100%; /* hr 태그가 부모 너비를 모두 차지 */
+}
+
+.set-date-range {
+    margin-top: -0.5rem; /* 화살표와 텍스트 사이 간격을 줄이기 */
+}
+
+@media (max-width: 1400px) {
+    .status-header {
+        flex-direction: column;
+    }
+
+    .box {
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media (min-width: 768px) {
+    .status-header {
+        flex-direction: column;
+    }
+
+    .box {
+        width: 100%;
+    }
+}

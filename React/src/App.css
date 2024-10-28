@@ -1,0 +1,491 @@
+#root {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.no-scroll {
+    overflow: hidden;
+    height: 100vh;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+
+.login-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+}
+
+.login-background {
+    background-image: url('./assets/background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.login-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 120vh;
+    background-color: rgba(15, 76, 129, 0.5);
+    z-index: -1;
+}
+
+.login-box {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6), 0 6px 20px 0 rgba(0, 0, 0, 0.6);
+}
+
+button {
+    flex-shrink: 0;
+}
+
+.app-container {
+    display: flex;
+    /*flex-direction: column;*/
+    height: 100vh;
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.content-container {
+    background-color: #f2f8ff;
+    flex-grow: 1;
+    overflow-y: auto;
+    box-sizing: border-box;
+    padding: 40px;
+}
+
+.content-container h1 {
+    font-family: "Nanum Gothic", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+    text-align: start;
+    margin-bottom: 40px;
+}
+
+.content-container h3 {
+    font-family: "Nanum Gothic", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: clamp(20px, 2.5vw, 25px);
+}
+
+.sub-content-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+@media (max-width: 768px) {
+    .sub-content-container {
+        margin-left: 10px;
+        padding: 10px;
+    }
+
+    .input-group {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+
+}
+
+.box {
+    background-color: #ffffff;
+    color: black;
+    cursor: pointer;
+}
+
+
+.box:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.box-blue {
+    --bs-bg-opacity: 1;
+    background-color: #0F4C81;
+    color: white;
+    cursor: pointer;
+}
+
+.box-primary {
+    --bs-bg-opacity: 1;
+    background-color: #0d6efd;
+    color: white;
+    cursor: pointer;
+}
+
+.box-primary:hover {
+    background-color: #0b5ed7;
+}
+
+.box-blue:hover {
+    background-color: rgba(15, 76, 129, 0.9);
+}
+
+.req-card {
+    width: 800px;
+    background-color: rgba(255,255,255,0.73);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.req-card:hover {
+    background-color: rgba(255, 255, 255, 1);
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 1400px) {
+    .req-card {
+        width: 100%
+    }
+}
+.sub-menu li {
+    margin-top: 20px;
+}
+
+.nav-item:hover {
+    color: white;
+}
+
+.table, .td {
+    font-family: "Nanum Gothic", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.table th {
+    font-family: "Nanum Gothic", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.logo {
+    height: 6em;
+    padding: 1.5em;
+    will-change: filter;
+    transition: filter 300ms;
+}
+
+.logo:hover {
+    filter: drop-shadow(0 0 2em #646cffaa);
+}
+
+.logo.react:hover {
+    filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    a:nth-of-type(2) .logo {
+        animation: logo-spin infinite 20s linear;
+    }
+}
+
+.card {
+    padding: 2em;
+}
+
+.read-the-docs {
+    color: #888;
+}
+
+.search-top-container {
+    position: relative;
+}
+
+
+.search-top-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    font-size: 20px;
+    transform: translateY(-50%);
+    color: rgba(15, 76, 128, 1);
+}
+
+.search-top-input {
+    padding-left: 45px;
+    background-color: rgb(255, 255, 255);
+    color: rgba(15, 76, 128, 0.66);
+    border: 1px solid rgba(15, 76, 128, 0.44);
+    border-radius: 5px;
+    height: 40px;
+    width: 600px;
+    font-size: 18px;
+}
+
+.search-top-input::placeholder {
+    color: rgba(0, 0, 0, 0.66);
+    opacity: 1;
+}
+
+.search-top-input:focus {
+    background-color: rgb(255, 255, 255);
+    color: rgba(44, 97, 146, 0.66);
+    outline: none;
+    box-shadow: none;
+}
+
+.table-container {
+    height: 550px;
+}
+
+@media (max-width: 1100px) {
+    .table-container {
+        width: 90%;
+        height: 55%
+    }
+
+    .table-container th, .table-container td {
+        padding: 6px;
+    }
+
+    .pagination-wrapper {
+        width: 100%
+    }
+}
+
+@media (max-width: 1030px) {
+    .table-container {
+        width: 90%;
+        height: 50%
+    }
+
+    .table-container th, .table-container td {
+        padding: 5px;
+    }
+
+    .pagination-wrapper {
+        width: 100%
+    }
+}
+
+@media (max-width: 1015px) {
+    .table-container {
+        width: 90%;
+        height: 45%
+    }
+
+    .table-container th, .table-container td {
+        font-size: smaller;
+    }
+
+    .pagination-wrapper {
+        width: 100%
+    }
+}
+
+@media (max-width: 915px) {
+    .table-container {
+        width: 90%;
+        height: 45%
+    }
+
+    .table-container th, .table-container td {
+        padding: 4px;
+        font-size: smaller;
+    }
+
+    .pagination-wrapper {
+        width: 100%
+    }
+}
+
+@media (max-width: 900px) {
+    .table-container {
+        width: 90%;
+        height: 40%
+    }
+
+    .table-container th, .table-container td {
+        padding: 3px;
+        font-size: smaller;
+    }
+
+    .pagination-wrapper {
+        width: 100%
+    }
+}
+
+@media (max-width: 890px) {
+    .table-container {
+        width: 90%;
+        height: 35%
+    }
+
+    .table-container th, .table-container td {
+        padding: 2px;
+        font-size: smaller;
+    }
+
+    .pagination-wrapper {
+        width: 100%;
+    }
+}
+
+@media (max-width: 880px) {
+    .table-container {
+        width: 90%;
+        height: 35%
+    }
+
+    .table-container th, .table-container td {
+        padding: 1px;
+        font-size: smaller;
+    }
+
+    .pagination-wrapper {
+        width: 100%;
+    }
+}
+
+@media (max-width: 865px) {
+    .table-container {
+        width: 90%;
+        height: 30%
+    }
+
+    .table-container th, .table-container td {
+        padding: 0;
+        font-size: smaller;
+    }
+
+    .pagination-wrapper {
+        width: 100%;
+    }
+}
+
+@media (max-width: 850px) {
+    .table-container {
+        width: 90%;
+        height: 25%
+    }
+
+    .table-container th, .table-container td {
+        padding: 0;
+        font-size: x-small;
+    }
+
+    .pagination-wrapper {
+        width: 100%;
+    }
+}
+.pagination-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    font-family: "Nanum Gothic", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.pagination-wrapper ul {
+    list-style: none;
+}
+
+.pagination-wrapper li {
+    float: left;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pagination-wrapper a {
+    height: 35px;
+    line-height: 25px;
+    text-decoration: none;
+    color: rgb(15, 76, 128);
+}
+
+.page {
+    margin: 0 15px;
+    cursor: pointer;
+    width: 35px;
+    border-radius: 30px;
+    border: solid 1px rgba(0, 0, 0, 0);
+    text-align: center;
+}
+
+.page:hover {
+    font-weight: 600;
+    background: rgba(107, 143, 193, 0.48);
+}
+
+.move {
+    cursor: pointer;
+    margin: 0 10px;
+    width: 35px;
+}
+
+.move:hover {
+    border-radius: 30px;
+    border: solid 1px rgba(0, 0, 0, 0);
+    font-weight: 700;
+    background: rgba(107, 143, 193, 0.48);
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.active {
+    font-weight: 800;
+    background: rgba(107, 143, 193, 0.48);
+}
+
+.nanum-gothic-regular {
+    font-family: "Nanum Gothic", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.nanum-gothic-bold {
+    font-family: "Nanum Gothic", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.nanum-gothic-extrabold {
+    font-family: "Nanum Gothic", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+}

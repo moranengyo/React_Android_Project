@@ -1,0 +1,203 @@
+Index: app/src/main/res/layout/item_recycle_view.xml
+===================================================================
+diff --git a/app/src/main/res/layout/item_recycle_view.xml b/app/src/main/res/layout/item_search.xml
+rename from app/src/main/res/layout/item_recycle_view.xml
+rename to app/src/main/res/layout/item_search.xml
+--- a/app/src/main/res/layout/item_recycle_view.xml	
++++ b/app/src/main/res/layout/item_search.xml	
+@@ -1,61 +1,134 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+-        xmlns:app="http://schemas.android.com/apk/res-auto"
+-        xmlns:tools="http://schemas.android.com/tools"
+-        android:id="@+id/ConstraintLayout"
++<androidx.cardview.widget.CardView
++    xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    android:layout_width="match_parent"
++    android:layout_height="wrap_content"
++    android:layout_margin="16dp"
++    app:cardCornerRadius="16dp"
++    app:cardElevation="8dp"
++    android:background="@android:color/white"
++    android:padding="16dp"
++    android:id="@+id/item_search_card">
++
++    <!-- 상단 날짜와 'New' 텍스트 포함 -->
++    <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+-        android:background="@color/material_dynamic_neutral80">
++        android:orientation="horizontal">
++
++        <!-- 상단: 날짜 표시 -->
++        <TextView
++            android:id="@+id/schedule_date"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:text="2024년 10월 07일"
++            android:textColor="@android:color/darker_gray"
++            android:textSize="14sp"
++            android:layout_marginStart="8dp"
++            android:layout_marginTop="8dp"
++            android:textStyle="bold" />
++    </LinearLayout>
+ 
++    <!-- 아이콘과 텍스트들 -->
+     <LinearLayout
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:orientation="horizontal"
+-            android:id="@+id/ItemLinearLayout"
+-            android:background="@color/white"
+-            android:padding="16dp"
+-            app:layout_constraintStart_toStartOf="parent"
+-            app:layout_constraintEnd_toStartOf="parent"
+-            app:layout_constraintTop_toTopOf="parent">
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:orientation="horizontal"
++        android:gravity="center_vertical"
++        android:paddingVertical="8dp">
+ 
+-        <!-- Image or icon for the item -->
++        <!-- 왼쪽: 아이콘 -->
+         <ImageView
+-                android:id="@+id/imageView"
+-                android:layout_width="0dp"
+-                android:layout_height="match_parent"
+-                android:src="@drawable/baseline_move_to_inbox_24"
+-                app:tint="@android:color/black"
+-                android:layout_weight="1" />
++            android:id="@+id/schedule_icon"
++            android:layout_width="113dp"
++            android:layout_height="109dp"
++            android:src="@drawable/logo2" />
+ 
+-        <!-- Text container -->
++        <!-- 텍스트 영역 -->
+         <LinearLayout
+-                android:layout_width="0dp"
+-                android:layout_height="match_parent"
+-                android:layout_weight="4"
+-                android:orientation="vertical"
+-                android:paddingStart="16dp">
++            android:id="@+id/schedule_text_container"
++            android:layout_width="205dp"
++            android:layout_height="131dp"
++            android:layout_weight="1"
++            android:orientation="vertical"
++            android:paddingStart="16dp">
+ 
+-            <!-- Main text (e.g., title or description) -->
++            <!-- 타이틀 -->
+             <TextView
+-                    android:id="@+id/textViewTitle"
+-                    android:layout_width="wrap_content"
+-                    android:layout_height="wrap_content"
+-                    android:text="다이어리"
+-                    android:textSize="34sp"
+-                    android:textColor="@android:color/black"
+-                    android:textStyle="bold" />
++                android:id="@+id/schedule_item_title"
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                android:layout_marginTop="18dp"
++                android:text="Item Title"
++                android:textColor="@android:color/black"
++                android:textSize="18sp"
++                android:textStyle="bold" />
+ 
+-            <!-- Subtitle or additional info -->
++            <!-- 서브 타이틀 -->
+             <TextView
+-                    android:id="@+id/textViewItemSubTitle"
++                android:id="@+id/schedule_item_subtitle"
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                android:layout_marginTop="4dp"
++                android:text="Subtitle or description"
++                android:textColor="@android:color/darker_gray"
++                android:textSize="14sp" />
++
++            <!-- 하단에 나란히 배치된 admin, status -->
++            <LinearLayout
++                android:id="@+id/schedule_status_container"
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                android:layout_gravity="start"
++                android:layout_marginTop="8dp"
++                android:orientation="horizontal">
++
++                <!-- Admin -->
++                <TextView
++                    android:id="@+id/schedule_admin"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+-                    android:text="001"
+-                    android:textSize="16sp"
++                    android:layout_marginEnd="16dp"
++                    android:text="admin"
+                     android:textColor="@android:color/darker_gray"
+-                    android:layout_marginTop="4dp" />
++                    android:textSize="14sp" />
++
++
++            </LinearLayout>
++        </LinearLayout>
++
++        <!-- 오른쪽: 추가 정보 -->
++        <LinearLayout
++            android:id="@+id/schedule_additional_container"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:gravity="end"
++            android:orientation="vertical">
++
++
++            <!-- 추가 정보 -->
++            <TextView
++                android:id="@+id/schedule_additional_info"
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                android:text="+15"
++                android:textColor="@color/sub_green"
++                android:textSize="25dp"
++                android:textStyle="bold"
++                android:layout_marginTop="4dp"
++                android:layout_marginEnd="18dp" />
++
++            <!-- 구매수량 -->
++            <TextView
++                android:id="@+id/schedule_additional_quantity"
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                android:text="구매수량"
++                android:textSize="16sp"
++                android:textStyle="bold"
++                android:layout_marginEnd="8dp"/>
+         </LinearLayout>
+     </LinearLayout>
+ 
+-
+-</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
++</androidx.cardview.widget.CardView>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_in_out.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n        xmlns:tools=\"http://schemas.android.com/tools\"\r\n        xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n        android:id=\"@+id/main\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\"\r\n        tools:context=\".InOutActivity\"\r\n        android:background=\"@color/material_dynamic_neutral90\">\r\n\r\n    <include\r\n            layout=\"@layout/item_recycle_view\"\r\n            android:id=\"@+id/itemView\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            app:layout_constraintTop_toTopOf=\"parent\"\r\n            app:layout_constraintEnd_toEndOf=\"parent\"\r\n            app:layout_constraintStart_toStartOf=\"parent\" />\r\n\r\n    <LinearLayout\r\n            android:orientation=\"vertical\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:id=\"@+id/DetailLinearLayout\"\r\n            android:background=\"@color/white\"\r\n            android:padding=\"16dp\"\r\n            app:layout_constraintStart_toStartOf=\"parent\"\r\n            app:layout_constraintEnd_toStartOf=\"parent\"\r\n            app:layout_constraintBottom_toTopOf=\"@+id/constraintLayout2\"\r\n            app:layout_constraintHorizontal_bias=\"0.0\"\r\n            app:layout_constraintTop_toBottomOf=\"@+id/itemView\"\r\n            android:layout_marginTop=\"16dp\"\r\n            >\r\n\r\n        <LinearLayout\r\n                android:orientation=\"horizontal\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:id=\"@+id/LinearLayout\">\r\n\r\n            <TextView\r\n                    android:text=\"거래처\"\r\n                    android:layout_width=\"0dp\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:id=\"@+id/textViewCompanyTitle\"\r\n                    android:layout_weight=\"1\"\r\n                    android:textStyle=\"bold\"\r\n                    android:textSize=\"20sp\" />\r\n\r\n            <LinearLayout\r\n                    android:orientation=\"vertical\"\r\n                    android:layout_width=\"0dp\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:layout_weight=\"4\"\r\n                    android:id=\"@+id/CompanyLinearLayout\">\r\n\r\n                <TextView\r\n                        android:text=\"삼성\"\r\n                        android:layout_width=\"match_parent\"\r\n                        android:layout_height=\"wrap_content\"\r\n                        android:id=\"@+id/textViewCompany\"\r\n                        android:textAlignment=\"textEnd\"\r\n                        android:textStyle=\"bold\"\r\n                        android:textSize=\"20sp\" />\r\n\r\n                <TextView\r\n                        android:text=\"SA\"\r\n                        android:layout_width=\"match_parent\"\r\n                        android:layout_height=\"wrap_content\"\r\n                        android:id=\"@+id/textViewCompanyCode\"\r\n                        android:textAlignment=\"textEnd\" />\r\n            </LinearLayout>\r\n\r\n        </LinearLayout>\r\n\r\n        <LinearLayout\r\n                android:orientation=\"horizontal\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"match_parent\"\r\n                android:layout_marginTop=\"12dp\">\r\n\r\n            <TextView\r\n                    android:text=\"위치\"\r\n                    android:layout_width=\"0dp\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:id=\"@+id/textViewLocationTitle\"\r\n                    android:layout_weight=\"1\"\r\n                    android:textStyle=\"bold\"\r\n                    android:textSize=\"20sp\" />\r\n\r\n            <LinearLayout\r\n                    android:orientation=\"vertical\"\r\n                    android:layout_width=\"0dp\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:layout_weight=\"4\"\r\n                    android:id=\"@+id/LocationLinearLayout\">\r\n\r\n                <TextView\r\n                        android:text=\"A창고\"\r\n                        android:layout_width=\"match_parent\"\r\n                        android:layout_height=\"wrap_content\"\r\n                        android:id=\"@+id/textViewLocation\"\r\n                        android:textAlignment=\"textEnd\"\r\n                        android:textStyle=\"bold\"\r\n                        android:textSize=\"20sp\" />\r\n\r\n                <TextView\r\n                        android:text=\"A01\"\r\n                        android:layout_width=\"match_parent\"\r\n                        android:layout_height=\"wrap_content\"\r\n                        android:id=\"@+id/textViewLocationCode\"\r\n                        android:textAlignment=\"textEnd\" />\r\n            </LinearLayout>\r\n        </LinearLayout>\r\n\r\n    </LinearLayout>\r\n\r\n    <androidx.constraintlayout.widget.ConstraintLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"0dp\"\r\n            app:layout_constraintEnd_toEndOf=\"parent\"\r\n            app:layout_constraintStart_toStartOf=\"parent\"\r\n            android:id=\"@+id/constraintLayout2\"\r\n            android:layout_marginTop=\"16dp\"\r\n            app:layout_constraintTop_toBottomOf=\"@+id/DetailLinearLayout\"\r\n            app:layout_constraintBottom_toBottomOf=\"parent\"\r\n            android:background=\"@color/white\"\r\n            android:padding=\"16dp\">\r\n\r\n        <TextView\r\n                android:text=\"사용 수량을 입력하세요.\"\r\n                android:layout_width=\"0dp\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:id=\"@+id/textView7\"\r\n                app:layout_constraintTop_toTopOf=\"parent\"\r\n                app:layout_constraintStart_toStartOf=\"parent\"\r\n                app:layout_constraintEnd_toEndOf=\"parent\"\r\n                android:textAlignment=\"textStart\"\r\n                android:textStyle=\"bold\"\r\n                android:textSize=\"24sp\"\r\n                android:visibility=\"visible\" />\r\n\r\n        <LinearLayout\r\n                android:orientation=\"horizontal\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:gravity=\"center\"\r\n                app:layout_constraintStart_toStartOf=\"parent\"\r\n                app:layout_constraintEnd_toEndOf=\"parent\"\r\n                android:id=\"@+id/linearLayout3\"\r\n                android:layout_marginTop=\"24dp\"\r\n                app:layout_constraintTop_toBottomOf=\"@+id/textView7\"\r\n                android:padding=\"8dp\"\r\n                android:visibility=\"visible\"\r\n                android:clipToPadding=\"false\"\r\n                android:clipChildren=\"false\">\r\n\r\n            <com.google.android.material.floatingactionbutton.FloatingActionButton\r\n                    android:layout_width=\"0dp\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:clickable=\"true\"\r\n                    app:srcCompat=\"@drawable/ic_minus\"\r\n                    android:id=\"@+id/floatingActionButton3\"\r\n                    android:layout_weight=\"1\"\r\n                    app:backgroundTint=\"#00BCD4\" />\r\n\r\n            <EditText\r\n                    android:layout_width=\"0dp\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:inputType=\"number\"\r\n                    android:ems=\"10\"\r\n                    android:background=\"@null\"\r\n                    android:id=\"@+id/editTextNumber\"\r\n                    android:layout_weight=\"1\"\r\n                    android:textAlignment=\"center\"\r\n                    android:textAllCaps=\"true\"\r\n                    android:textSize=\"40sp\"\r\n                    />\r\n\r\n            <com.google.android.material.floatingactionbutton.FloatingActionButton\r\n                    android:layout_width=\"0dp\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:clickable=\"true\"\r\n                    app:srcCompat=\"@android:drawable/ic_input_add\"\r\n                    android:id=\"@+id/floatingActionButton2\"\r\n                    android:layout_weight=\"1\"\r\n                    app:backgroundTint=\"#00BCD4\" />\r\n        </LinearLayout>\r\n\r\n        <androidx.appcompat.widget.AppCompatButton\r\n                android:text=\"출고하기\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:id=\"@+id/buttonOutput\"\r\n                android:textColor=\"@color/white\"\r\n                android:textStyle=\"bold\"\r\n                android:background=\"@drawable/round_button\"\r\n                android:backgroundTint=\"#E91E63\"\r\n                android:layout_marginEnd=\"16dp\"\r\n                app:layout_constraintEnd_toEndOf=\"parent\"\r\n                app:layout_constraintStart_toStartOf=\"parent\"\r\n                android:layout_marginStart=\"16dp\"\r\n                app:layout_constraintBottom_toBottomOf=\"parent\"\r\n                android:visibility=\"visible\"\r\n                android:layout_marginBottom=\"16dp\" />\r\n    </androidx.constraintlayout.widget.ConstraintLayout>\r\n\r\n\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+===================================================================
+diff --git a/app/src/main/res/layout/activity_in_out.xml b/app/src/main/res/layout/activity_in_out.xml
+--- a/app/src/main/res/layout/activity_in_out.xml	
++++ b/app/src/main/res/layout/activity_in_out.xml	
+@@ -9,7 +9,7 @@
+         android:background="@color/material_dynamic_neutral90">
+ 
+     <include
+-            layout="@layout/item_recycle_view"
++            layout="@layout/item_search"
+             android:id="@+id/itemView"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
