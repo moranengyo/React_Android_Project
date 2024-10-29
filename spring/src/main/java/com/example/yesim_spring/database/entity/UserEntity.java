@@ -61,7 +61,7 @@ public class UserEntity implements UserDetails {
     @ToString.Exclude
     private List<PurchaseEntity> purchaseRequests = new ArrayList<>();
 
-    @OneToMany(mappedBy ="user")
+    @OneToMany(mappedBy ="user", cascade = CascadeType.ALL)
     @ToString.Exclude
     private List<RefreshTokenEntity> refreshTokenEntityList = new ArrayList<>();
 

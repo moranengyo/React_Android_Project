@@ -4,12 +4,14 @@ import com.example.yesim_spring.config.jwt.JWTProvider;
 import com.example.yesim_spring.database.Dto.JwtDto;
 import com.example.yesim_spring.database.Dto.NewUserDto;
 import com.example.yesim_spring.database.Dto.SignUpDto;
+import com.example.yesim_spring.database.Dto.UserDto;
 import com.example.yesim_spring.database.entity.RefreshTokenEntity;
 import com.example.yesim_spring.database.entity.UserEntity;
 import com.example.yesim_spring.database.entity.define.Role;
 import com.example.yesim_spring.database.repository.PurchaseRepository;
 import com.example.yesim_spring.database.repository.UsageRepository;
 import com.example.yesim_spring.database.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -45,7 +47,7 @@ public class UserService {
         Date now = new Date();
         String accessToken = provider.makeJWT(
                 user,
-                (new Date(now.getTime() + Duration.ofMinutes(5).toMillis()))
+                (new Date(now.getTime() + Duration.ofMinutes(1).toMillis()))
         );
 
 
@@ -95,6 +97,8 @@ public class UserService {
                 });
     }
 
+
+
     public Map<String, Object> findAllUnconfirmedUser(int pageNumber){
         var page = userRepository.getUnconfirmedUserList(PageRequest.of(pageNumber, 10));
         var unconfirmedUserList = page.stream().map(NewUserDto::of).toList();
@@ -108,15 +112,15 @@ public class UserService {
         return data;
     }
 
-    public Map<String, Object> findAllApprovedUser(int pageNumber){
-        var page = userRepository.getApprovedUserList(PageRequest.of(pageNumber, 10));
+    public Map<String, Object> findAllApprovedUser(int pageNumber, String userName){
+        var page = userRepository.getApprovedUserList(PageRequest.of(pageNumber, 10), userName);
         var approvedUserList = page.stream().map(NewUserDto::of).toList();
         int totalPages = page.getTotalPages();
 
         Map<String, Object> data = new HashMap<>();
 
         data.put("approvedUserList", approvedUserList);
-        data.put("totalPages", totalPages);
+        data.put("totalApprovedUserCnt", userRepository.countAllBySeqNotAndApprovedYn(1L, "Y"));
 
         return data;
     }
@@ -143,15 +147,19 @@ public class UserService {
     public void rejectUser(long id){
         var user = userRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("not found " + id));
-        deleteUser(user.getUserId());
+        deleteUser(user);
     }
 
-    public void deleteUser(String userId){
-        var removedUser = userRepository.findById(1L)
-                .orElseThrow(() -> new IllegalArgumentException("not found " + userId));
+    public void deleteUser(String id){
+        deleteUser(userRepository.findByUserId(id).orElseThrow(() -> new IllegalArgumentException("not found " + id)));
+    }
 
-        var usageList = usageRepository.findAllByUser_UserId(userId);
-        var purchaseList = purchaseRepository.findAllByUser_UserId(userId);
+    public void deleteUser(UserEntity user){
+        var removedUser = userRepository.findById(1L)
+                .orElseThrow(() -> new IllegalArgumentException("not found " ));
+
+        var usageList = usageRepository.findAllByUser_UserId(user.getUserId());
+        var purchaseList = purchaseRepository.findAllByUser_UserId(user.getUserId());
 
         for(var usage : usageList){
             usage.ChangeUser(removedUser);
@@ -164,6 +172,28 @@ public class UserService {
         usageRepository.saveAll(usageList);
         purchaseRepository.saveAll(purchaseList);
 
-        userRepository.deleteByUserId(userId);
+        userRepository.delete(user);
+    }
+
+    public UserDto findByUserId(String userId){
+        var user  = userRepository.findByUserId(userId)
+                .orElseThrow(() -> new IllegalArgumentException("not found user"));
+
+        if (!user.getApprovedYn().equals("Y")) {
+            throw new IllegalStateException("User is not approved");
+        }
+
+        return UserDto.of(user);
+    }
+
+    public UserDto findApprovedByUserId(String userId){
+        var user = userRepository.findByUserIdAndApprovedYn(userId, "Y")
+                .orElseThrow(() -> new IllegalArgumentException("not found user"));
+
+        return UserDto.of(user);
+    }
+
+    public boolean checkUserIdDuplicate(String userId) {
+        return userRepository.existsByUserId(userId);
     }
 }

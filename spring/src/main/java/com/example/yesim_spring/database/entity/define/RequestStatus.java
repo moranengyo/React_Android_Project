@@ -1,9 +1,8 @@
 package com.example.yesim_spring.database.entity.define;
 
 public enum RequestStatus {
-    UNCONFIRMED,
-    WAIT,
-    APPROVE,
-    CANCEL,
-    IN_STOCK
+    WAIT, // 요청
+    APPROVE, // 승인
+    CANCEL, // 반려
+    IN_STOCK // 입고
 }

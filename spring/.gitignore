@@ -1,0 +1,53 @@
+# Gradle 관련 파일 무시
+.gradle/
+!gradle/wrapper/gradle-wrapper.properties
+
+# 빌드 결과물 무시
+/build/
+
+# IntelliJ IDEA 관련 파일 무시
+*.class
+*.lock
+*.bin
+
+# 특정 파일 무시
+build/**/*.class
+.gradle/**/*.lock
+.gradle/**/*.bin
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+
+*.class
+*.lock
+*.bin
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# Maven
+target/
+
+# Gradle
+build/
+.gradle/
+
+# OS 관련 파일
+.DS_Store
+Thumbs.db
+
+# 환경설정 파일
+*.properties
+*.yml
+*.env
+
+# 로그 파일
+*.log
+
+# 빌드 툴 캐시
+.mvn/
+.gradle/

@@ -52,6 +52,7 @@ public class PurchaseEntity {
     @ToString.Exclude
     private UserEntity user;
 
+    @Setter
     @ManyToOne
     @JoinColumn(name="item_id", nullable = false)
     @ToString.Exclude
@@ -60,5 +61,23 @@ public class PurchaseEntity {
 
     public void ChangeUser(UserEntity user) {
         this.user = user;
+    }
+
+    public void updateStatusAndTime(RequestStatus status) {
+        approvedStatus = status;
+        approvedTime = LocalDateTime.now();
+    }
+
+    public void rejectPurchase(String approvalComment){
+        this.approvedStatus = RequestStatus.CANCEL;
+        this.approvalComment = approvalComment;
+        approvedTime = LocalDateTime.now();
+    }
+
+
+    public void approvePurchase(String approvalComment){
+        this.approvedStatus = RequestStatus.APPROVE;
+        this.approvalComment = approvalComment;
+        approvedTime = LocalDateTime.now();
     }
 }

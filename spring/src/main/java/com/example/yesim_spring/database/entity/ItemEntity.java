@@ -22,7 +22,7 @@ public class ItemEntity {
     @Column(nullable = false, unique = true)
     private String totalCode;
 
-    @Column(nullable = false, name = "`name`")
+    @Column(nullable = false, name = "`name`", unique = true)
     private String name;
 
     @Column(nullable = false)
@@ -63,5 +63,13 @@ public class ItemEntity {
         totalNum -= usageNum;
 
         return true;
+    }
+
+    public void inStock(int count) {
+        totalNum += count;
+    }
+
+    public void addCode(String code) {
+        totalCode = code;
     }
 }

@@ -1,13 +1,10 @@
 package com.example.yesim_spring.controller;
 
 
-import com.example.yesim_spring.database.Dto.UsageDto;
 import com.example.yesim_spring.service.UsageService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Map;
 
 import static com.example.yesim_spring.util.Const.*;
@@ -73,10 +70,10 @@ public class UsageController {
         return usageService.getTotalUsageListByDateAndGroupedItem(pageNum, dateForm);
     }
 
-    @GetMapping("/user/usage/user/{pageNum}")
-    public Map<String, Object> getTotalUsageListByDateAndUser(@PathVariable int pageNum,
-                                                              @RequestParam String date,
-                                                              @RequestParam String userId) {
+    @GetMapping("/user/usage/user/item/{pageNum}")
+    public Map<String, Object> getTotalUsageListByDateAndUserGroupedItem(@PathVariable int pageNum,
+                                                                     @RequestParam String date,
+                                                                         @RequestParam String userId) {
         String dateForm = "";
         switch (date) {
             case "Y":
@@ -89,15 +86,25 @@ public class UsageController {
                 dateForm = QUERY_DATE_FORMAT_DAY;
         }
 
-        return usageService.getTotalUsageListByDateAndUser(pageNum, dateForm, userId);
+        return usageService.getTotalUsageListByDateAndUserGroupedItem(pageNum, dateForm, userId);
     }
 
+    @GetMapping("/user/usage/user/{pageNum}")
+    public Map<String, Object> getTotalUsageListByDateAndUser(@PathVariable int pageNum,
+                                                              @RequestParam String date) {
+        String dateForm = "";
+        switch (date) {
+            case "Y":
+                dateForm = QUERY_DATE_FORMAT_YEAR;
+                break;
+            case "M":
+                dateForm = QUERY_DATE_FORMAT_MONTH;
+                break;
+            default:
+                dateForm = QUERY_DATE_FORMAT_DAY;
+        }
 
-    @PostMapping("/user/usage/req")
-    public ResponseEntity<?> usageItem(@RequestBody UsageDto usageDto) {
-        if(usageService.usageItem(usageDto))
-            return ResponseEntity.ok().build();
-        else
-            return ResponseEntity.noContent().build();
+        return usageService.totalCountUsageByDateGroupedUserAndItem(pageNum, dateForm);
     }
+
 }

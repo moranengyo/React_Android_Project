@@ -41,4 +41,19 @@ public record ItemDto(
                 .company(CompanyDto.toEntity(dto.company))
                 .build();
     }
+
+
+    public static ItemEntity toNewItemEntity(ItemDto dto){
+        return ItemEntity.builder()
+                .totalCode(dto.totalCode)
+                .name(dto.name)
+                .minNum(dto.minNum)
+                .totalNum(dto.totalNum)
+                .price(dto.price)
+                .thumbnail(dto.thumbNail)
+                .container(ContainerDto.toEntity(dto.container))
+                .company(CompanyDto.toEntity(dto.company))
+                .build();
+    }
+
 }

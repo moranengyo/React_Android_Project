@@ -21,13 +21,13 @@ public class UserController {
 
     @GetMapping({"/s-manager/unconfirmed-user/{pageNumber}"})
     public ResponseEntity<?> getUnconfirmedUser(@PathVariable int pageNumber) {
-        return ResponseEntity.ok(userService.findAllUnconfirmedUser(pageNumber-1));
+        return ResponseEntity.ok(userService.findAllUnconfirmedUser(pageNumber));
     }
 
 
     @GetMapping("/s-manager/approved-user/{pageNumber}")
-    public ResponseEntity<?> getApprovedUser(@PathVariable int pageNumber) {
-        return ResponseEntity.ok(userService.findAllApprovedUser(pageNumber -1));
+    public ResponseEntity<?> getApprovedUser(@PathVariable int pageNumber, @RequestParam String userName) {
+        return ResponseEntity.ok(userService.findAllApprovedUser(pageNumber, userName));
     }
 
 
@@ -57,6 +57,16 @@ public class UserController {
     public ResponseEntity<?> rejectUser(@PathVariable long id){
         try {
             userService.rejectUser(id);
+            return ResponseEntity.ok("Y");
+        }catch (Exception e){
+            return ResponseEntity.ok("N");
+        }
+    }
+
+    @DeleteMapping("/s-manager/user/delete/{id}")
+    public ResponseEntity<?> deleteUser(@PathVariable String id){
+        try {
+            userService.deleteUser(id);
             return ResponseEntity.ok("Y");
         }catch (Exception e){
             return ResponseEntity.ok("N");

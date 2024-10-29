@@ -5,6 +5,7 @@ import com.example.yesim_spring.service.CompanyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -32,5 +33,11 @@ public class CompanyController {
     @DeleteMapping("/manager/company/delete/{companyId}")
     public void deleteCompany(@PathVariable int companyId){
         companyService.DeleteCompany(companyId);
+    }
+
+
+    @GetMapping("/manager/company/search")
+    public List<CompanyDto> getSearchCompanyList(@RequestParam String searchVal){
+        return companyService.getSearchCompanyList(searchVal);
     }
 }

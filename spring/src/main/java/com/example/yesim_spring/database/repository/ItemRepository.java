@@ -20,6 +20,9 @@ public interface ItemRepository extends JpaRepository<ItemEntity, Long> {
 
     int countAllByNameContaining(String searchVal);
 
+
+    ItemEntity findByName(String name);
+
     @Query(value = "select count(*) from item where total_num <= min_num", nativeQuery = true)
     int countAllUnderMin();
 
