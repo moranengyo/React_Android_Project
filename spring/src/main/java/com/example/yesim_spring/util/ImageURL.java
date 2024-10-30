@@ -24,6 +24,7 @@ public class ImageURL {
         BASE_URL = url;
     }
 
+
     public static String thumbnail(String imgName) {
 
         return BASE_URL + imgName;

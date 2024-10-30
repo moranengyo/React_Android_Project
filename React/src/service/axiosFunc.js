@@ -12,7 +12,7 @@ const getRefreshToken = () => {
 
 const getNewAccessToken = (success) => {
     console.log("getNewAccessToken");
-    axios.post(`/api/auth/refresh`, null,
+    axios.post(`/auth/refresh`, null,
         {
             headers: {
                 RefreshToken: getRefreshToken()
@@ -30,7 +30,7 @@ const getNewAccessToken = (success) => {
 
 
 const login = (success, userId, userPw) => {
-    axios.get(`/api/auth/login`, {
+    axios.get(`/auth/login`, {
         params: {
             userId: userId,
             userPw: userPw,
@@ -49,7 +49,7 @@ const login = (success, userId, userPw) => {
 }
 
 const unconfirmedUserList = (success, pageNum) => {
-    axios.get(`/api/s-manager/unconfirmed-user/${pageNum}`,
+    axios.get(`/s-manager/unconfirmed-user/${pageNum}`,
         {
             headers: {Authorization: getAccessToken()}
         })
@@ -67,7 +67,7 @@ const unconfirmedUserList = (success, pageNum) => {
 }
 
 const userApproved = (success, id) => {
-    axios.put(`/api/s-manager/user/approved/${id}`, null,
+    axios.put(`/s-manager/user/approved/${id}`, null,
         {headers: {Authorization: getAccessToken()}})
         .then(res => {
             success();
@@ -80,7 +80,7 @@ const userApproved = (success, id) => {
 }
 
 const userRejected = (success, id) => {
-    axios.delete(`/api/s-manager/user/reject/${id}`,
+    axios.delete(`/s-manager/user/reject/${id}`,
         {headers: {Authorization: getAccessToken()}})
         .then(res => {
             success();
@@ -94,7 +94,7 @@ const userRejected = (success, id) => {
 
 const deleteUser = (success, id) => {
     console.log(id)
-    axios.delete(`/api/s-manager/user/delete/${id}`,
+    axios.delete(`/s-manager/user/delete/${id}`,
         {
             headers: {
                 Authorization: getAccessToken()
@@ -112,7 +112,7 @@ const deleteUser = (success, id) => {
 
 const getApprovedUsers = (success, pageNumber, searchVal) => {
     console.log(pageNumber);
-    axios.get(`/api/s-manager/approved-user/${pageNumber}`,
+    axios.get(`/s-manager/approved-user/${pageNumber}`,
         {
             params: {userName: searchVal},
             headers: {Authorization: getAccessToken()}
@@ -128,7 +128,7 @@ const getApprovedUsers = (success, pageNumber, searchVal) => {
 }
 
 const changeUserRole = (success, id, role) => {
-    axios.put(`/api/s-manager/user/changeRole/${id}`, null, {
+    axios.put(`/s-manager/user/changeRole/${id}`, null, {
         params: {
             role: role
         },
@@ -145,7 +145,7 @@ const changeUserRole = (success, id, role) => {
 }
 
 const getUserTotalReq = (success, id) => {
-    axios.get(`/api/manager/purchase/req/${id}`,
+    axios.get(`/manager/purchase/req/${id}`,
         {headers: {Authorization: getAccessToken()}})
         .then(res => {
             success(res.data);
@@ -158,7 +158,7 @@ const getUserTotalReq = (success, id) => {
 }
 
 const getPurchaseListByDateAndSearch = (success, pageNum, searchDur, searchVal) => {
-    axios.get(`/api/manager/purchase/in-store/search/${pageNum}`, {
+    axios.get(`/manager/purchase/in-store/search/${pageNum}`, {
         params: {
             searchDur: searchDur,
             searchVal: searchVal
@@ -182,7 +182,7 @@ const getPurchaseListByStatus = (success, pageNum, purchaseStatus = null) => {
 
     switch (purchaseStatus) {
         case null:
-            url = `/api/manager/purchase/all/${pageNum}`
+            url = `/manager/purchase/all/${pageNum}`
             config.params = {
                 pageNum: pageNum
             }
@@ -209,7 +209,7 @@ const getPurchaseListByStatus = (success, pageNum, purchaseStatus = null) => {
 const getUsageListByDateAndSearch = (success, pageNum, searchDur, searchVal) => {
     console.log(`${pageNum}  ${searchDur}  ${searchVal}`)
 
-    axios.get(`/api/manager/usage/search/${pageNum}`, {
+    axios.get(`/manager/usage/search/${pageNum}`, {
         params: {
             searchDur: searchDur,
             searchVal: searchVal
@@ -229,7 +229,7 @@ const getUsageListByDateAndSearch = (success, pageNum, searchDur, searchVal) => 
 }
 
 const getItemListSearch = (success, pageNum, searchVal) => {
-    axios.get(`api/user/item/search/p/${pageNum}`, {
+    axios.get(`/user/item/search/p/${pageNum}`, {
         params: {
             searchVal: searchVal
         },
@@ -247,7 +247,7 @@ const getItemListSearch = (success, pageNum, searchVal) => {
 }
 
 const getCompanyList = (success, pageNum) => {
-    axios.get(`api/manager/company/all/${pageNum}`, {headers: {Authorization: getAccessToken()}})
+    axios.get(`/manager/company/all/${pageNum}`, {headers: {Authorization: getAccessToken()}})
         .then(res => {
             success(res.data);
             console.log(res.data);
@@ -261,7 +261,7 @@ const getCompanyList = (success, pageNum) => {
 }
 
 const getSearchCompanyList = (success, searchVal) => {
-    axios.get(`/api/manager/company/search`, {
+    axios.get(`/manager/company/search`, {
         params: {
             searchVal: searchVal
         },
@@ -280,7 +280,7 @@ const getSearchCompanyList = (success, searchVal) => {
 
 
 const addNewCompany = (success, company) => {
-    axios.post(`/api/manager/company/new`, {
+    axios.post(`/manager/company/new`, {
             id: company.id ? company.id : 0,
             name: company.name,
             email: company.email,
@@ -300,7 +300,7 @@ const addNewCompany = (success, company) => {
 }
 
 const updateCompany = (success, companyId, company) => {
-    axios.put(`/api/manager/company/update/${companyId}`, {
+    axios.put(`/manager/company/update/${companyId}`, {
         id: companyId,
         name: company.name,
         email: company.email,
@@ -320,7 +320,7 @@ const updateCompany = (success, companyId, company) => {
 }
 
 const deleteCompany = (success, companyId) => {
-    axios.delete(`api/manager/company/delete/${companyId}`, {
+    axios.delete(`/manager/company/delete/${companyId}`, {
         headers: {Authorization: getAccessToken()}
     })
         .then(res => {
@@ -335,7 +335,7 @@ const deleteCompany = (success, companyId) => {
 }
 
 const getAlarmItemList = (success, pageNum) => {
-    axios.get(`/api/manager/item/under-min/${pageNum}`, {
+    axios.get(`/manager/item/under-min/${pageNum}`, {
         headers: {Authorization: getAccessToken()}
     })
         .then(res => {
@@ -350,7 +350,7 @@ const getAlarmItemList = (success, pageNum) => {
 }
 
 const getPurchaseDetail = (success, purchaseId) => {
-    axios.get(`/api/manager/purchase/detail/${purchaseId}`, {
+    axios.get(`/manager/purchase/detail/${purchaseId}`, {
         headers: {Authorization: getAccessToken()}
     })
         .then(res => {
@@ -367,7 +367,7 @@ const getPurchaseDetail = (success, purchaseId) => {
 
 const getPurchaseList = (success, pageNum, status = "") => {
     if (status === null || status === "") {
-        axios.get(`/api/manager/purchase/all/${pageNum}`,
+        axios.get(`/manager/purchase/all/${pageNum}`,
             {
                 headers: {Authorization: getAccessToken()}
             })
@@ -381,7 +381,7 @@ const getPurchaseList = (success, pageNum, status = "") => {
                 }
             });
     } else {
-        axios.get(`/api/manager/purchase/status/${pageNum}`, {
+        axios.get(`/manager/purchase/status/${pageNum}`, {
             params: {
                 status: status
             },
@@ -402,7 +402,7 @@ const getPurchaseList = (success, pageNum, status = "") => {
 }
 
 const getDashBoardInoutCnt = (success, date) => {
-    axios.get(`/api/manager/dashboard`, {
+    axios.get(`/manager/dashboard`, {
         params: {
             date: date
         },
@@ -419,7 +419,7 @@ const getDashBoardInoutCnt = (success, date) => {
 
 const getDashBoardPurchaseCnt = (success) => {
     var token = getAccessToken();
-    axios.get(`/api/manager/dashboard/purchaseCnt`, {
+    axios.get(`/manager/dashboard/purchaseCnt`, {
         headers: {Authorization: getAccessToken()}
     })
         .then(res => {
@@ -435,14 +435,15 @@ const uploadImageFile = (file, result) => {
     const formData = new FormData();
     formData.append('file', file);
 
-    axios.post(`/api/manager/upload`, formData, {
+    axios.post(`/manager/upload`, formData, {
         headers: {
             Authorization: getAccessToken(),
             'Content-Type': 'multipart/form-data'
         }
     })
         .then(res => {
-            result(res.data);
+            const fileUrl = res.data.thumbnail;
+            result(fileUrl);
         })
         .catch(err => {
             console.log(err);
@@ -451,7 +452,7 @@ const uploadImageFile = (file, result) => {
 
 const newPurchaseRequest = (purchaseDTO, result) => {
     console.log(purchaseDTO)
-    axios.post(`/api/manager/purchase/req`, purchaseDTO, {
+    axios.post(`/manager/purchase/req`, purchaseDTO, {
         headers: {
             Authorization: getAccessToken(),
             'Content-Type': 'application/json',
@@ -466,7 +467,7 @@ const newPurchaseRequest = (purchaseDTO, result) => {
 }
 
 const getContainerList = (result) => {
-    axios.get(`/api/manager/container/all`, {
+    axios.get(`/manager/container/all`, {
         headers: {
             Authorization: getAccessToken(),
         }
@@ -481,7 +482,7 @@ const getContainerList = (result) => {
 
 const checkAccess = (success) => {
     console.log("check")
-    axios.get(`/api/auth/check`, {
+    axios.get(`/auth/check`, {
         headers: {
             Authorization: getAccessToken()
         }
@@ -500,7 +501,7 @@ const checkAccess = (success) => {
 
 
 const rejectPurchase = (success, purchaseId, approvedComment) =>{
-    axios.post(`/api/s-manager/purchase/reject/${purchaseId}`, {approvedComment}, {
+    axios.post(`/s-manager/purchase/reject/${purchaseId}`, {approvedComment}, {
         params : {approvedComment: approvedComment},
         headers : {Authorization: getAccessToken()}
     })
@@ -515,7 +516,7 @@ const rejectPurchase = (success, purchaseId, approvedComment) =>{
 }
 
 const approvePurchase = (success, purchaseId, approvedComment) =>{
-    axios.post(`/api/s-manager/purchase/approve/${purchaseId}`, {approvedComment}, {
+    axios.post(`/s-manager/purchase/approve/${purchaseId}`, {approvedComment}, {
         params : {approvedComment: approvedComment},
         headers : {Authorization: getAccessToken()}
     })
@@ -531,7 +532,7 @@ const approvePurchase = (success, purchaseId, approvedComment) =>{
 
 const makeQRCode = (itemId, purchaseId, success) => {
 
-    axios.post(`/api/manager/qrcode?itemId=${itemId}&purchaseId=${purchaseId}`, {}, {
+    axios.post(`/manager/qrcode?itemId=${itemId}&purchaseId=${purchaseId}`, {}, {
         headers: { Authorization: getAccessToken() },
         responseType: 'arraybuffer'
     })
@@ -554,7 +555,7 @@ const makeQRCode = (itemId, purchaseId, success) => {
 
 const deletePurchase = (purchaseId, success) => {
     console.log(`axios purchase: ${purchaseId}`)
-    axios.delete(`/api/manager/purchase/delete/${purchaseId}`, {
+    axios.delete(`/manager/purchase/delete/${purchaseId}`, {
         headers: {Authorization: getAccessToken()}
     })
         .then(res => {

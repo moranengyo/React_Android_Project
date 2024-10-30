@@ -50,7 +50,7 @@ public class WebSecurityConfig {
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/**","/error",  "/image/**", "/auth/refresh")
+                        .requestMatchers("/auth/**","/error",  "/image/**", "/auth/refresh", "/**")
                         .permitAll()
 
                         .requestMatchers("/s-manager/**")

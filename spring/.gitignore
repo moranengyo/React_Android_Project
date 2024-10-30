@@ -51,3 +51,6 @@ Thumbs.db
 # 빌드 툴 캐시
 .mvn/
 .gradle/
+
+# s3
+application-aws.yml

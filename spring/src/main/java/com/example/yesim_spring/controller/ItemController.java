@@ -1,6 +1,7 @@
 package com.example.yesim_spring.controller;
 
 import com.example.yesim_spring.service.ItemService;
+import com.example.yesim_spring.service.S3Service;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.logging.Log;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,6 +25,7 @@ import static com.example.yesim_spring.util.Const.*;
 public class ItemController {
 
     private final ItemService itemService;
+    private final S3Service s3Service;
 
     @GetMapping("/user/item/detail/{itemId}")
     public ResponseEntity<?> getItem(@PathVariable Long itemId) {
@@ -82,7 +84,7 @@ public class ItemController {
         return ResponseEntity.ok(itemService.getItemInOutList(pageNum, dateForm));
     }
 
-    @Value("${spring.web.resources.static-locations}")
+    @Value("${image-base-url}")
     private String uploadPath;
 
     @Value("${image-base-url}")
@@ -92,16 +94,7 @@ public class ItemController {
     public ResponseEntity<?> handleFileUpload(@RequestParam("file") MultipartFile file) {
 
         try {
-            String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-            String originalFilename = file.getOriginalFilename();
-            String newFilename = timestamp + "_" + originalFilename;
-
-            String cleanedUploadPath = uploadPath.replace("file:///", "");
-            Path filePath = Paths.get(cleanedUploadPath, newFilename);
-
-            Files.write(filePath, file.getBytes());
-            String fileUrl = newFilename;
-
+            String fileUrl = s3Service.uploadFile(file);
             return ResponseEntity.ok().body("{\"thumbnail\":\"" + fileUrl + "\"}");
         } catch (IOException e) {
             return ResponseEntity.status(500).body("파일 업로드 실패");

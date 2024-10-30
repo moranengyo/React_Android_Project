@@ -15,7 +15,7 @@ spring :
 #      jdbc-url: jdbc:mysql://localhost:3306/testdb1?characterEncoding=UTF-8&serverTimeZone=UTC
 #      username: test1
 #      password: full405
-      jdbc-url: jdbc:mysql://ec2-43-202-4-215.ap-northeast-2.compute.amazonaws.com:3306/yesim?characterEncoding=UTF-8&serverTimeZone=UTC
+      jdbc-url: jdbc:mysql://43.203.24.242:3306/yesim?characterEncoding=UTF-8&serverTimeZone=UTC
       username: portfolio
       password: Java405!@#
       driver-class-name: com.mysql.cj.jdbc.Driver
@@ -37,12 +37,12 @@ spring :
   sql:
     init:
       mode : always
+  profiles:
+    include: aws
 
-  web:
-    resources:
-      static-locations: file:///C:/Users/admin/Documents/React_Android_Project/spring/image/
-image-base-url: https://portfolio-yeeun.s3.ap-northeast-2.amazonaws.com/YESIM/image/
+image-base-url: 'https://portfolio-yeeun.s3.amazonaws.com/YESIM/image/'
 #image-base-url: localhost:8080/
 jwt:
   issuer : "yesim_issuer"
   secretKey : "yesim_secretKey"
+

@@ -63,7 +63,12 @@ function App() {
                     />
                     {/* props로 role 전달받아 role별 ui 렌더링 */}
                     <Route path="/" element={
-                        <ProtectedRoute element={<PrivateLayout role={role}><Statistics role={role}/></PrivateLayout>}/>
+                        localStorage.getItem("ACCESS_TOKEN") ? (
+                                <ProtectedRoute element={<PrivateLayout role={role}><Statistics role={role}/></PrivateLayout>}/>
+                            )
+                            :(
+                                <PublicLayout> <Login setRole={setRole}/> </PublicLayout>
+                            )
                     }
                     />
                     <Route path="/search" element={
